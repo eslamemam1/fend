@@ -48,3 +48,23 @@ app.listen(port , ()=>{
 })
 
 
+/**
+ * const iOp = {}
+const newOp = {
+    id: 1,
+  name: "John Doe",
+  age: 30
+}
+
+app.get('/data' , function(req,res){
+    res.send(req.body)
+})
+
+function addData(req,res){
+    Object.assign(iOp ,newOp)
+    res.send(req.body)
+    console.log(req.body)
+    app.post('/data' , addData)
+}
+ */
+
