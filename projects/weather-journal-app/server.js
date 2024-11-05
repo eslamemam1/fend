@@ -36,7 +36,6 @@ app.get('/all',(req,res)=>{
 })
 
 // post method
-
 app.post('/add' , (req,res)=>{
     const {temperature , date , userResponse} = req.body;
     projectData = {temperature , date , userResponse};
