@@ -47,7 +47,20 @@ const postData = async (url = '' , data = {})=>{
     }
 }
 
+// update ui
 
+const ui = async ()=>{
+    try{
+        const req = await fetch ('/all');
+        const aData = await req.json();  
+        document.getElementById('temp').innerHTML = `Temperature : ${Math.round(aData.temperature)}°F`
+        document.getElementById('date').innerHTML = `Date : ${Math.round(aData.date)}`
+        document.getElementById('content').innerHTML = `Feeling : ${Math.round(aData.userResponse)}°F`
+        
+    }catch(error){
+        console.log(error , 'error')
+    }
+}
 
 // event when i use the btn
 btn.addEventListener('click',()=>{
