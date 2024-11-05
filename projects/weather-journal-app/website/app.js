@@ -1,8 +1,5 @@
 /* Global Variables */
 
-const { error } = require("console");
-const { response } = require("express");
-
 const apiKey = 'ca929a06b8a186b984d3a6259d89b66a' ;
 const url = 'https://api.openweathermap.org/data/2.5/weather';
 
@@ -14,10 +11,6 @@ let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 const btn = document.getElementById('generate');
 const zipCode = document.querySelector('#zip');
 const feelings = document.querySelector('#feelings');
-
-btn.addEventListener('click',()=>{
-    console.log(`${zipCode.value} and ${feelings.value}`)
-})
 
 // fetch data 
 const getData = async (zipCode) =>{
@@ -53,5 +46,13 @@ const postData = async (url = '' , data = {})=>{
         console.log(error , 'error')
     }
 }
+
+
+
+// event when i use the btn
+btn.addEventListener('click',()=>{
+    console.log(`${zipCode.value} and ${feelings.value}`)
+})
+
 
 
