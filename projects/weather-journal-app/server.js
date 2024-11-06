@@ -28,7 +28,7 @@ app.use(express.static('website'));
 // Setup Server
 
 // port 
-const port = 8080 ;
+const port = 3000 ;
 
 // get method 
 app.get('/all',(req,res)=>{
@@ -37,9 +37,10 @@ app.get('/all',(req,res)=>{
 
 // post method
 app.post('/add' , (req,res)=>{
+    console.log("reserved : " ,req.body);
     const {temperature , date , userResponse} = req.body;
     projectData = {temperature , date , userResponse};
-    req.send(projectData)
+    req.send({message:"success"})
 })
 
 app.listen(port , ()=>{
