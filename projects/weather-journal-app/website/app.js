@@ -52,8 +52,8 @@ const retrieveData = async () =>{
     const allData = await request.json()
     console.log(allData)
     // Write updated data to DOM elements
-    document.getElementById('temp').innerHTML = Math.round(allData.temp)+ 'degrees';
-    document.getElementById('content').innerHTML = allData.feel;
+    document.getElementById('temp').innerHTML = Math.round(allData.temperature)+ 'degrees';
+    document.getElementById('content').innerHTML = allData.userResponse;
     document.getElementById("date").innerHTML =allData.date;
     }
     catch(error) {
@@ -80,16 +80,16 @@ const retrieveData = async () =>{
 // event when i use the btn
 btn.addEventListener('click', async () => {
     const zipCode = document.getElementById('zip').value;
-    const feelings = document.getElementById('feelings').value;
+    const userResponse = document.getElementById('feelings').value;
     const date = new Date().toLocaleDateString();
-    //console.log(`${zipCode} and ${feelings}`)
+    console.log(`${zipCode} and ${userResponse}`)
     if (zipCode) {
         const getWData = await getData(zipCode);
         if (getWData && getWData.main) {
             await postData('/add', {
                 temperature: getWData.main.temp,
                 date: date,
-                userResponse: feelings,
+                userResponse: userResponse,
             })
             retrieveData();
         } else {
