@@ -1,70 +1,42 @@
 // Setup empty JS object to act as endpoint for all routes
 projectData = {};
-
 // Require Express to run server and routes
-
 const express = require('express');
-
 // Start up an instance of app
-
 const app = express();
-
-const bodyParser =require('body-parser')
-
+const bodyParser = require('body-parser')
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 // Cors for cross origin allowance
-
 const cors = require('cors');
 app.use(cors());
 
 // Initialize the main project folder
 app.use(express.static('website'));
 
-
 // Setup Server
-
 // port 
-const port = 3000 ;
+const port = 3000;
 
 // get method 
-app.get('/all',(req,res)=>{
-    res.send(projectData)
+app.get('/all', (req, res) => {
+    res.json(projectData);
 })
-
 // post method
-app.post('/add' , (req,res)=>{
-    console.log("reserved : " ,req.body);
-    const {temperature , date , userResponse} = req.body;
-    projectData = {temperature , date , userResponse};
-    req.send({message:"success"})
-})
+app.post('/add', (req, res) => {
+    try {
+        console.log("reserved : ", req.body);
+        const { temperature, date, userResponse } = req.body;
+        projectData = { temperature, date, userResponse };
+        res.status(200).json(projectData);
+    } catch (error) {
+        console.error('error passing data' ,error)
+        res.status(500).json({message : "internal server error"})
+    }
+});
 
-app.listen(port , ()=>{
+app.listen(port, () => {
     console.log(`server running on port : ${port}`)
 })
-
-
-/**
- * const iOp = {}
-const newOp = {
-    id: 1,
-  name: "John Doe",
-  age: 30
-}
-
-app.get('/data' , function(req,res){
-    res.send(req.body)
-})
-
-function addData(req,res){
-    Object.assign(iOp ,newOp)
-    res.send(req.body)
-    console.log(req.body)
-    app.post('/data' , addData)
-}
- */
-

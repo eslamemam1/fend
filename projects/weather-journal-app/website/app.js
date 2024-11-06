@@ -39,7 +39,7 @@ const postData = async (url, data) => {
         });
         return await response.json();
     } catch (error) {
-        console.log('error')
+        console.log('Error posting data to the server:', error) ;
     }
 };
 
@@ -50,9 +50,9 @@ const retrieveData = async () =>{
     try {
     // Transform into JSON
     const allData = await request.json()
-    console.log(allData)
+    //console.log(allData)
     // Write updated data to DOM elements
-    document.getElementById('temp').innerHTML = Math.round(allData.temperature)+ 'degrees';
+    document.getElementById('temp').innerHTML = Math.round(allData.temperature)+ ' degrees';
     document.getElementById('content').innerHTML = allData.userResponse;
     document.getElementById("date").innerHTML =allData.date;
     }
@@ -82,7 +82,7 @@ btn.addEventListener('click', async () => {
     const zipCode = document.getElementById('zip').value;
     const userResponse = document.getElementById('feelings').value;
     const date = new Date().toLocaleDateString();
-    console.log(`${zipCode} and ${userResponse}`)
+    //console.log(`${zipCode} and ${userResponse}`)
     if (zipCode) {
         const getWData = await getData(zipCode);
         if (getWData && getWData.main) {
